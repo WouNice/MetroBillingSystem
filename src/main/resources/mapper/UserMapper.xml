@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.mapper.UserMapper">
+    <resultMap id="BaseResultMap" type="org.example.model.User">
+        <result column="id" jdbcType="INTEGER" property="id"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="money" jdbcType="INTEGER" property="money"/>
+        <result column="card_type" jdbcType="VARCHAR" property="cardType"/>
+        <result column="card_money" jdbcType="INTEGER" property="cardMoney"/>
+        <result column="loss_times" jdbcType="INTEGER" property="lossTimes"/>
+        <result column="is_black" jdbcType="INTEGER" property="isBlack"/>
+    </resultMap>
+    <insert id="add" parameterType="org.example.model.User">
+        insert into user (id, name, money, card_type, card_money, loss_times, is_black)
+        values (#{id}, #{name}, #{money}, #{cardType}, #{cardMoney}, #{lossTimes}, #{isBlack})
+    </insert>
+    <delete id="delete" parameterType="org.example.model.User">
+        DELETE
+        FROM user
+        WHERE id = #{id}
+    </delete>
+    <update id="update" parameterType="org.example.model.User">
+        update user
+        set id=#{id},
+            name=#{name},
+            money=#{money},
+            card_type=#{cardType},
+            card_money=#{cardMoney},
+            loss_times=#{lossTimes},
+            is_black=#{isBlack}
+        where id = #{id}
+    </update>
+    <select id="query" resultType="org.example.model.User" resultMap="BaseResultMap">
+        select *
+        from user
+        WHERE id = #{id}
+    </select>
+    <select id="queryBlack" resultType="org.example.model.User" resultMap="BaseResultMap">
+        select *
+        from user
+        WHERE is_black = 1
+    </select>
+</mapper>

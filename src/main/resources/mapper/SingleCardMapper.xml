@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.mapper.SingleCardMapper">
+    <resultMap id="BaseResultMap" type="org.example.model.SingleCard">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="start_node" jdbcType="INTEGER" property="startNode"/>
+        <result column="end_node" jdbcType="INTEGER" property="endNode"/>
+    </resultMap>
+    <insert id="add" parameterType="org.example.model.SubwayLine">
+        insert into single_card (id, start_node, end_node)
+        values (#{id}, #{startNode}, #{endNode})
+    </insert>
+    <select id="query" resultType="org.example.model.SubwayLine" resultMap="BaseResultMap">
+        select *
+        from single_card
+        WHERE id = #{id}
+    </select>
+    <select id="queryAll" resultType="org.example.model.SubwayLine" resultMap="BaseResultMap">
+        select *
+        from single_card
+    </select>
+</mapper>

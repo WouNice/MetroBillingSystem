@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.mapper.SubwayLineMapper">
+    <resultMap id="BaseResultMap" type="org.example.model.SubwayLine">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="stations" jdbcType="VARCHAR" property="stations"/>
+    </resultMap>
+    <insert id="add" parameterType="org.example.model.SubwayLine">
+        insert into subwayline (id, name, stations)
+        values (#{id}, #{name}, #{stations})
+    </insert>
+    <select id="query" resultType="org.example.model.SubwayLine" resultMap="BaseResultMap">
+        select id, name, stations
+        from subwayline
+        WHERE id = #{id}
+    </select>
+    <select id="queryAll" resultType="org.example.model.SubwayLine" resultMap="BaseResultMap">
+        select id, name, stations
+        from subwayline
+    </select>
+</mapper>
